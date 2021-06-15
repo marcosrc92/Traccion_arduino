@@ -59,12 +59,15 @@ void setup ()  {
  ***********************************************************************/
  
  /****************************funciones de HX711_ADC.h***********************/
+ cell.begin();
+ 
  //set new calibration factor, raw data is divided by this value to convert to readable data modifica "calFactorRecip"
  cell.setCalFactor(1171.6);
 
  //set new tare offset (raw data value input without the scale "calFactor")
  cell.setTareOffset(5000);
  /***************************************************************************/ 
+  
  
  Serial.begin (115200);
  /*
@@ -84,12 +87,11 @@ void loop ()  {
      virtualPosition--;
    TurnDetected = false;          // do NOT repeat IF loop until new rotation detected
  */  
-   
    unsigned long currentTime = millis();
    //Serial.print("grados = ");
    if((currentTime-previousTime)>=SAMPLE_RATE){
      previousTime = currentTime;
-     cell.update();
+     //cell.update();
      Serial.print(-cell.getData());
      Serial.print(":");
      Serial.print(virtualPosition);
