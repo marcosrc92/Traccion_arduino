@@ -210,9 +210,9 @@ void serialEvent(Serial p) {
         if(angle>lastAngle) str_1st_msg = "Bajando...";
         else if(angle<lastAngle) str_2nd_msg = "Subiendo...";
         str_2nd_msg = "deformacion_tiempo total: " + str_mm + " mm.\n"+
-                      "Carga: " + load + " kg.";
+                      "Carga: " + load*1000 + " kg.";
         if (test_running) {
-          carga_deformacion.add(mm, load);
+          carga_deformacion.add(mm, load*1000);
           carga_tiempo.add(time, load);
           deformacion_tiempo.add(time, mm);
         }
